@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 
+class_name Ball
+
+
 var _speed = 400
 var _start_velocity = Vector2(1, 1).normalized() * _speed
 

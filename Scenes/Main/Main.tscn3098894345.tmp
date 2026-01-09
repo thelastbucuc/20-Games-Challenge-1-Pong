@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3wbggngf6n3r"]
+[gd_scene load_steps=10 format=3 uid="uid://b3wbggngf6n3r"]
 
 [ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_p8rbg"]
 [ext_resource type="Script" uid="uid://blafkvtf7ie54" path="res://Scenes/Main/Main.gd" id="1_w20t6"]
 [ext_resource type="FontFile" uid="uid://eegatg5txbex" path="res://assets/Kenney Pixel Square.ttf" id="2_aw1lf"]
 [ext_resource type="PackedScene" uid="uid://dwslk8xhgo38l" path="res://Scenes/Border/Border.tscn" id="2_qtv3y"]
 [ext_resource type="PackedScene" uid="uid://ch1n15ena1s5c" path="res://Scenes/Paddle2/Paddle2.tscn" id="3_cmk6n"]
+[ext_resource type="PackedScene" uid="uid://c30pamb5hlfmh" path="res://Scenes/Ball/Ball.tscn" id="4_i3fi7"]
 [ext_resource type="PackedScene" uid="uid://c00rwang3cw17" path="res://Scenes/ScoreDetect/ScoreDetect.tscn" id="6_aw1lf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5s61s"]
@@ -52,6 +53,9 @@ position = Vector2(26, 180)
 
 [node name="Paddle2" parent="." instance=ExtResource("3_cmk6n")]
 position = Vector2(614, 180)
+
+[node name="Ball" parent="." instance=ExtResource("4_i3fi7")]
+position = Vector2(320, 180)
 
 [node name="ScoreDetectLeft" parent="." instance=ExtResource("6_aw1lf")]
 
