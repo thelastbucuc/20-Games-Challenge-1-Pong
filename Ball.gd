@@ -23,7 +23,14 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
-		velocity = velocity.bounce(collision_info.get_normal())
+		var collider = collision_info.get_collider()
+		if "Paddle" in collider.name:
+			var bounce_angle = (global_position.y - collider.global_position.y) / (collider.get_node("CollisionShape2D").shape.get_rect().size.y / 2)
+			bounce_angle *= 0.8
+			var new_direction = Vector2(-velocity.normalized().x, bounce_angle).normalized()
+			velocity = new_direction * _speed
+		else:
+			velocity = velocity.bounce(collision_info.get_normal())
 		velocity *= SPEED_MULT
 		sound.play()
 	debug_label.text = "%s" % velocity
