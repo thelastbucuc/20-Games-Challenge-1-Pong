@@ -8,26 +8,33 @@ class_name Paddle
 @export var is_p2: bool
 
 
-const SPEED: float = 180.0
+const PLAYER_SPEED: float = 180.0
 
 
-var _ai_max_speed: float = 180.0
+var _ai_max_speed: float = 300.0
 var _ball_reference: Ball
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _process(delta: float) -> void:
 	_ball_reference = get_tree().get_first_node_in_group(Ball.GROUP_NAME)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	update_movement()
+	#update_movement(delta)
+	if is_ai and _ball_reference:
+		global_position.y = lerp(global_position.y,_ball_reference.global_position.y , 0.1)
+	else:
+		velocity.y = PLAYER_SPEED * get_input()
+	move_and_slide()
 
 
 # Controls Movement
-func update_movement() -> void:
-	velocity.y = SPEED * get_input()
+func update_movement(delta: float) -> void:
+	if is_ai and _ball_reference:
+		velocity.y = move_toward(velocity.y, _ai_max_speed, delta) * ai_movement_dir()
+	else:
+		velocity.y = PLAYER_SPEED * get_input()
 	move_and_slide()
 
 
@@ -42,11 +49,7 @@ func ai_movement_dir() -> float:
 
 # Gets input for movement up or down
 func get_input() -> float:
-	if is_ai == false and is_p2 == false:
+	if is_p2 == false:
 		return Input.get_axis("up", "down")
-	elif is_p2 == true:
-		return Input.get_axis("ui_up", "ui_down")
-	elif _ball_reference:
-		return ai_movement_dir()
 	else:
-		return 0
+		return Input.get_axis("ui_up", "ui_down")
