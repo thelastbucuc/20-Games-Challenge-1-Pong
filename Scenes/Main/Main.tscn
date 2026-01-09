@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3wbggngf6n3r"]
+
+[ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_p8rbg"]
+[ext_resource type="PackedScene" uid="uid://dwslk8xhgo38l" path="res://Scenes/Border/Border.tscn" id="2_qtv3y"]
+[ext_resource type="PackedScene" uid="uid://ch1n15ena1s5c" path="res://Scenes/Paddle2/Paddle2.tscn" id="3_cmk6n"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qtv3y"]
+
+[node name="Main" type="Node2D"]
+metadata/_edit_vertical_guides_ = [640.0]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Bg" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Border" parent="." instance=ExtResource("2_qtv3y")]
+position = Vector2(315, 5)
+scale = Vector2(69.2, 1)
+
+[node name="Border2" parent="." instance=ExtResource("2_qtv3y")]
+position = Vector2(315, 355)
+scale = Vector2(69.2, 1)
+
+[node name="Divider" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(10, 360)
+texture = SubResource("CanvasTexture_qtv3y")
+
+[node name="Paddle" parent="." instance=ExtResource("1_p8rbg")]
+position = Vector2(26, 180)
+
+[node name="Paddle2" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(614, 180)

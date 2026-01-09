@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch1n15ena1s5c"]
+
+[ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_usxni"]
+[ext_resource type="Script" uid="uid://dpf3at6tq7ob7" path="res://Scenes/Paddle2/Paddle2.gd" id="2_7htub"]
+
+[node name="Paddle2" instance=ExtResource("1_usxni")]
+script = ExtResource("2_7htub")
