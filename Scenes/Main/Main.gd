@@ -11,6 +11,7 @@ const BALL = preload("uid://c30pamb5hlfmh")
 var _score_right: int = 0
 var _score_left: int = 0
 var _ball_alive: bool = false
+var _died_side: float = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 func spawn_ball() -> void:
 	var ball: Ball = BALL.instantiate()
 	ball.position = Vector2(320, 180)
+	ball._start_side = _died_side
 	_ball_alive = true
 	add_child(ball)
 
@@ -37,8 +39,10 @@ func score(side: String) -> void:
 	match side:
 		"right":
 			_score_right += 1
+			_died_side = 1
 		"left":
 			_score_left += 1
+			_died_side = -1
 	_ball_alive = false
 	sound.play()
 

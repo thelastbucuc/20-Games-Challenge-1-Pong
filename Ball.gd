@@ -12,11 +12,12 @@ const SPEED_MULT: float = 1.022
 
 
 var _speed = 400
-var _start_velocity = Vector2(1, 1).normalized() * _speed
+var _start_side: float
 
 
 func _ready() -> void:
-	velocity = _start_velocity
+	var rand_y: float = randf_range(-1, 1)
+	velocity = Vector2(_start_side, rand_y).normalized() * _speed
 
 
 func _physics_process(delta) -> void:
