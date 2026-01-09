@@ -5,6 +5,7 @@ class_name Ball
 
 
 const SPEED_MULT: float = 1.022
+const GROUP_NAME: String = "ball"
 
 
 @onready var debug_label: Label = $DebugLabel
@@ -16,6 +17,7 @@ var _start_side: float
 
 
 func _ready() -> void:
+	add_to_group(GROUP_NAME)
 	var rand_y: float = randf_range(-1, 1)
 	velocity = Vector2(_start_side, rand_y).normalized() * _speed
 
