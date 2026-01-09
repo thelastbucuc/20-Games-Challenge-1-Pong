@@ -8,6 +8,7 @@ const SPEED_MULT: float = 1.022
 
 
 @onready var debug_label: Label = $DebugLabel
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 
 var _speed = 400
@@ -23,6 +24,7 @@ func _physics_process(delta) -> void:
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
 		velocity *= SPEED_MULT
+		sound.play()
 	debug_label.text = "%s" % velocity
 
 

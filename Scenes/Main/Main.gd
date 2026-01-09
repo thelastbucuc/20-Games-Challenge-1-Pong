@@ -5,6 +5,7 @@ const BALL = preload("uid://c30pamb5hlfmh")
 
 
 @onready var score_label: Label = $UI/MC/ScoreLabel
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 
 var _score_right: int = 0
@@ -32,13 +33,21 @@ func spawn_ball() -> void:
 	add_child(ball)
 
 
+func score(side: String) -> void:
+	match side:
+		"right":
+			_score_right += 1
+		"left":
+			_score_left += 1
+	_ball_alive = false
+	sound.play()
+
+
 func _on_score_detect_left_body_entered(body: Node2D) -> void:
 	if body is Ball:
-		_score_right += 1
-		_ball_alive = false
+		score("right")
 
 
 func _on_score_detect_right_body_entered(body: Node2D) -> void:
 	if body is Ball:
-		_score_left += 1
-		_ball_alive = false
+		score("left")

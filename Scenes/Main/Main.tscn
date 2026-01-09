@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3wbggngf6n3r"]
+[gd_scene load_steps=10 format=3 uid="uid://b3wbggngf6n3r"]
 
 [ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_p8rbg"]
 [ext_resource type="Script" uid="uid://blafkvtf7ie54" path="res://Scenes/Main/Main.gd" id="1_w20t6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dwslk8xhgo38l" path="res://Scenes/Border/Border.tscn" id="2_qtv3y"]
 [ext_resource type="PackedScene" uid="uid://ch1n15ena1s5c" path="res://Scenes/Paddle2/Paddle2.tscn" id="3_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://c00rwang3cw17" path="res://Scenes/ScoreDetect/ScoreDetect.tscn" id="6_aw1lf"]
+[ext_resource type="AudioStream" uid="uid://d3gmq1vkc6mo" path="res://assets/toggle_002.ogg" id="7_aw1lf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5s61s"]
 font = ExtResource("2_aw1lf")
@@ -57,6 +58,9 @@ position = Vector2(614, 180)
 
 [node name="ScoreDetectRight" parent="." instance=ExtResource("6_aw1lf")]
 position = Vector2(640, 0)
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_aw1lf")
 
 [connection signal="body_entered" from="ScoreDetectLeft" to="." method="_on_score_detect_left_body_entered"]
 [connection signal="body_entered" from="ScoreDetectRight" to="." method="_on_score_detect_right_body_entered"]
