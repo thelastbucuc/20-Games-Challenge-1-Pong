@@ -4,7 +4,7 @@ extends CharacterBody2D
 class_name Paddle
 
 
-const SPEED: float = 160.0
+const SPEED: float = 180.0
 
 
 # Called when the node enters the scene tree for the first time.
