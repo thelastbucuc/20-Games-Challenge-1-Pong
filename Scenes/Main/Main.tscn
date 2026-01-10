@@ -23,9 +23,9 @@ size = Vector2(180, 240)
 script = ExtResource("1_w20t6")
 metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="GameUi" type="Control" parent="CanvasLayer"]
+[node name="GameUi" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MC" type="MarginContainer" parent="CanvasLayer/GameUi"]
+[node name="MC" type="MarginContainer" parent="HUD/GameUi"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 12
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/GameUi/MC"]
+[node name="ScoreLabel" type="Label" parent="HUD/GameUi/MC"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -51,7 +51,7 @@ label_settings = SubResource("LabelSettings_5s61s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseButton" type="TextureButton" parent="CanvasLayer/GameUi/MC"]
+[node name="PauseButton" type="TextureButton" parent="HUD/GameUi/MC"]
 process_mode = 3
 self_modulate = Color(0.41981313, 0.41981313, 0.41981304, 1)
 z_index = 1
@@ -61,9 +61,8 @@ size_flags_vertical = 8
 toggle_mode = true
 texture_normal = ExtResource("3_aw1lf")
 
-[node name="PauseMenu" type="ColorRect" parent="CanvasLayer/GameUi"]
+[node name="PauseMenu" type="ColorRect" parent="HUD/GameUi"]
 process_mode = 3
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +72,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.105882354, 0.105882354, 0.105882354, 0.8784314)
 
-[node name="VB" type="VBoxContainer" parent="CanvasLayer/GameUi/PauseMenu"]
+[node name="VB" type="VBoxContainer" parent="HUD/GameUi/PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,12 +86,12 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/GameUi/PauseMenu/VB"]
+[node name="RestartButton" type="Button" parent="HUD/GameUi/PauseMenu/VB"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_aw1lf")
 text = "Restart"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUi/PauseMenu/VB/RestartButton"]
+[node name="TextureRect" type="TextureRect" parent="HUD/GameUi/PauseMenu/VB/RestartButton"]
 self_modulate = Color(1, 1, 1, 0.22745098)
 layout_mode = 1
 anchors_preset = 15
@@ -102,12 +101,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_aw1lf")
 
-[node name="ExitButton" type="Button" parent="CanvasLayer/GameUi/PauseMenu/VB"]
+[node name="ExitButton" type="Button" parent="HUD/GameUi/PauseMenu/VB"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_aw1lf")
 text = "Exit"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUi/PauseMenu/VB/ExitButton"]
+[node name="TextureRect" type="TextureRect" parent="HUD/GameUi/PauseMenu/VB/ExitButton"]
 self_modulate = Color(1, 1, 1, 0.22745098)
 layout_mode = 1
 anchors_preset = 15
@@ -135,7 +134,6 @@ position = Vector2(26, 180)
 
 [node name="Paddle2" parent="." instance=ExtResource("1_p8rbg")]
 position = Vector2(614, 180)
-is_p2 = true
 
 [node name="ScoreDetectLeft" parent="." instance=ExtResource("6_aw1lf")]
 
@@ -145,35 +143,35 @@ position = Vector2(640, 0)
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_aw1lf")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="MobileInputs" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Left" type="TouchScreenButton" parent="CanvasLayer2"]
+[node name="Left" type="TouchScreenButton" parent="MobileInputs"]
 position = Vector2(106, 90)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_aw1lf")
 action = "up"
 
-[node name="Right" type="TouchScreenButton" parent="CanvasLayer2"]
+[node name="Right" type="TouchScreenButton" parent="MobileInputs"]
 position = Vector2(106, 270)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_aw1lf")
 action = "down"
 
-[node name="Left2" type="TouchScreenButton" parent="CanvasLayer2"]
+[node name="Left2" type="TouchScreenButton" parent="MobileInputs"]
 position = Vector2(533, 90)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_aw1lf")
 action = "ui_up"
 
-[node name="Right2" type="TouchScreenButton" parent="CanvasLayer2"]
+[node name="Right2" type="TouchScreenButton" parent="MobileInputs"]
 position = Vector2(533, 270)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_aw1lf")
 action = "ui_down"
 
-[connection signal="toggled" from="CanvasLayer/GameUi/MC/PauseButton" to="." method="_on_pause_button_toggled"]
-[connection signal="pressed" from="CanvasLayer/GameUi/PauseMenu/VB/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameUi/PauseMenu/VB/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="toggled" from="HUD/GameUi/MC/PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="pressed" from="HUD/GameUi/PauseMenu/VB/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/GameUi/PauseMenu/VB/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="body_entered" from="ScoreDetectLeft" to="." method="_on_score_detect_left_body_entered"]
 [connection signal="body_entered" from="ScoreDetectRight" to="." method="_on_score_detect_right_body_entered"]
