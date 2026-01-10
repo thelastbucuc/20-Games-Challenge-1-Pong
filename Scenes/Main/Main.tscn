@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3wbggngf6n3r"]
+[gd_scene load_steps=12 format=3 uid="uid://b3wbggngf6n3r"]
 
 [ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_p8rbg"]
 [ext_resource type="Script" uid="uid://blafkvtf7ie54" path="res://Scenes/Main/Main.gd" id="1_w20t6"]
@@ -15,6 +15,9 @@ font_size = 36
 [sub_resource type="CanvasTexture" id="CanvasTexture_aw1lf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qtv3y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw1lf"]
+size = Vector2(180, 240)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_w20t6")
@@ -132,7 +135,7 @@ position = Vector2(26, 180)
 
 [node name="Paddle2" parent="." instance=ExtResource("1_p8rbg")]
 position = Vector2(614, 180)
-is_ai = true
+is_p2 = true
 
 [node name="ScoreDetectLeft" parent="." instance=ExtResource("6_aw1lf")]
 
@@ -141,6 +144,33 @@ position = Vector2(640, 0)
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_aw1lf")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Left" type="TouchScreenButton" parent="CanvasLayer2"]
+position = Vector2(106, 90)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aw1lf")
+action = "up"
+
+[node name="Right" type="TouchScreenButton" parent="CanvasLayer2"]
+position = Vector2(106, 270)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aw1lf")
+action = "down"
+
+[node name="Left2" type="TouchScreenButton" parent="CanvasLayer2"]
+position = Vector2(533, 90)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aw1lf")
+action = "ui_up"
+
+[node name="Right2" type="TouchScreenButton" parent="CanvasLayer2"]
+position = Vector2(533, 270)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aw1lf")
+action = "ui_down"
 
 [connection signal="toggled" from="CanvasLayer/GameUi/MC/PauseButton" to="." method="_on_pause_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/GameUi/PauseMenu/VB/RestartButton" to="." method="_on_restart_button_pressed"]
