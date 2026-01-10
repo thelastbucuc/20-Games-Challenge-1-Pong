@@ -86,6 +86,23 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AiButton" type="CheckButton" parent="HUD/GameUi/PauseMenu/VB"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_aw1lf")
+text = "AI"
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HUD/GameUi/PauseMenu/VB/AiButton"]
+self_modulate = Color(1, 1, 1, 0.22745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_aw1lf")
+
 [node name="RestartButton" type="Button" parent="HUD/GameUi/PauseMenu/VB"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_aw1lf")
@@ -134,6 +151,7 @@ position = Vector2(26, 180)
 
 [node name="Paddle2" parent="." instance=ExtResource("1_p8rbg")]
 position = Vector2(614, 180)
+is_p2 = true
 
 [node name="ScoreDetectLeft" parent="." instance=ExtResource("6_aw1lf")]
 
@@ -171,6 +189,7 @@ shape = SubResource("RectangleShape2D_aw1lf")
 action = "ui_down"
 
 [connection signal="toggled" from="HUD/GameUi/MC/PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="toggled" from="HUD/GameUi/PauseMenu/VB/AiButton" to="." method="_on_ai_button_toggled"]
 [connection signal="pressed" from="HUD/GameUi/PauseMenu/VB/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="HUD/GameUi/PauseMenu/VB/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="body_entered" from="ScoreDetectLeft" to="." method="_on_score_detect_left_body_entered"]

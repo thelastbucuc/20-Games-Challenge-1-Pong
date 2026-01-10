@@ -5,10 +5,10 @@ const BALL = preload("uid://c30pamb5hlfmh")
 const MAIN = preload("uid://b3wbggngf6n3r")
 
 
-@onready var score_label: Label = $CanvasLayer/GameUi/MC/ScoreLabel
+@onready var score_label: Label = $HUD/GameUi/MC/ScoreLabel
 @onready var sound: AudioStreamPlayer2D = $Sound
-@onready var pause_menu: ColorRect = $CanvasLayer/GameUi/PauseMenu
-
+@onready var pause_menu: ColorRect = $HUD/GameUi/PauseMenu
+@onready var paddle_2: Paddle = $Paddle2
 
 
 var _score_right: int = 0
@@ -19,7 +19,6 @@ var _died_side: float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_ball()
 	pause_menu.hide()
 
 
@@ -71,9 +70,23 @@ func _on_pause_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_restart_button_pressed() -> void:
+	pause_menu.hide()
 	get_tree().paused = false
-	get_tree().change_scene_to_packed(MAIN)
+	var _ball_reference: Ball = get_tree().get_first_node_in_group(Ball.GROUP_NAME)
+	_ball_reference.call_deferred("queue_free")
+	_ball_alive = false
+	_score_right = 0
+	_score_left = 0
 
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_ai_button_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		paddle_2.is_ai = true
+		paddle_2.is_p2 = false
+	if toggled_on == false:
+		paddle_2.is_ai = false
+		paddle_2.is_p2 = true
