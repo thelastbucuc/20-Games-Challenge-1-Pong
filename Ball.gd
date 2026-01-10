@@ -4,7 +4,7 @@ extends CharacterBody2D
 class_name Ball
 
 
-const SPEED_MULT: float = 1.05
+const SPEED_MULT: float = 1.03
 const GROUP_NAME: String = "ball"
 
 
@@ -33,7 +33,7 @@ func _physics_process(delta) -> void:
 			velocity = new_direction * _speed
 		else:
 			velocity = velocity.bounce(collision_info.get_normal())
-		velocity *= SPEED_MULT
+		_speed *= SPEED_MULT
 		sound.play()
 	debug_label.text = "%s" % velocity
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3wbggngf6n3r"]
+[gd_scene load_steps=11 format=3 uid="uid://b3wbggngf6n3r"]
 
 [ext_resource type="PackedScene" uid="uid://cvymy7gb02v2a" path="res://Scenes/Paddle/Paddle.tscn" id="1_p8rbg"]
 [ext_resource type="Script" uid="uid://blafkvtf7ie54" path="res://Scenes/Main/Main.gd" id="1_w20t6"]
 [ext_resource type="FontFile" uid="uid://eegatg5txbex" path="res://assets/Kenney Pixel Square.ttf" id="2_aw1lf"]
 [ext_resource type="PackedScene" uid="uid://dwslk8xhgo38l" path="res://Scenes/Border/Border.tscn" id="2_qtv3y"]
+[ext_resource type="Texture2D" uid="uid://cef3k2rn6o2sp" path="res://assets/gear.png" id="3_aw1lf"]
 [ext_resource type="PackedScene" uid="uid://c00rwang3cw17" path="res://Scenes/ScoreDetect/ScoreDetect.tscn" id="6_aw1lf"]
 [ext_resource type="AudioStream" uid="uid://d3gmq1vkc6mo" path="res://assets/toggle_002.ogg" id="7_aw1lf"]
 
@@ -11,28 +12,107 @@
 font = ExtResource("2_aw1lf")
 font_size = 36
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_aw1lf"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_qtv3y"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_w20t6")
 metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MC" type="MarginContainer" parent="UI"]
-anchors_preset = 10
+[node name="GameUi" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 23.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MC" type="MarginContainer" parent="CanvasLayer/GameUi"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_top = 12
 
-[node name="ScoreLabel" type="Label" parent="UI/MC"]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GameUi/MC"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "0    0"
 label_settings = SubResource("LabelSettings_5s61s")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer/GameUi/MC"]
+process_mode = 3
+self_modulate = Color(0.41981313, 0.41981313, 0.41981304, 1)
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+toggle_mode = true
+texture_normal = ExtResource("3_aw1lf")
+
+[node name="PauseMenu" type="ColorRect" parent="CanvasLayer/GameUi"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.105882354, 0.105882354, 0.105882354, 0.8784314)
+
+[node name="VB" type="VBoxContainer" parent="CanvasLayer/GameUi/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameUi/PauseMenu/VB"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_aw1lf")
+text = "Restart"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUi/PauseMenu/VB/RestartButton"]
+self_modulate = Color(1, 1, 1, 0.22745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_aw1lf")
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/GameUi/PauseMenu/VB"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_aw1lf")
+text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUi/PauseMenu/VB/ExitButton"]
+self_modulate = Color(1, 1, 1, 0.22745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_aw1lf")
 
 [node name="Border" parent="." instance=ExtResource("2_qtv3y")]
 position = Vector2(315, 5)
@@ -62,5 +142,8 @@ position = Vector2(640, 0)
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_aw1lf")
 
+[connection signal="toggled" from="CanvasLayer/GameUi/MC/PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/GameUi/PauseMenu/VB/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUi/PauseMenu/VB/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="body_entered" from="ScoreDetectLeft" to="." method="_on_score_detect_left_body_entered"]
 [connection signal="body_entered" from="ScoreDetectRight" to="." method="_on_score_detect_right_body_entered"]

@@ -8,7 +8,7 @@ class_name Paddle
 @export var is_p2: bool
 
 
-const PLAYER_SPEED: float = 180.0
+const PLAYER_SPEED: float = 200.0
 
 
 var _ai_max_speed: float = 300.0
