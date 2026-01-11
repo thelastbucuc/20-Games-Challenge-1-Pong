@@ -1,5 +1,6 @@
 # 🏓 20 Games Challenge #1: Pong (Godot 4)
 
+![Gameplay Preview](assets/gameplay.gif)
 This project is the first installment of the **"20 Games Challenge"**, aimed at mastering game development fundamentals. I have rebuilt the classic Pong with modern mechanics, a smooth AI, and mobile-ready controls.
 
 ## 🚀 Key Features
