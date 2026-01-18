@@ -1,9 +1,9 @@
-# 🏓 20 Games Challenge #1: Pong (Godot 4)
+# 20 Games Challenge #1: Pong (Godot 4)
 
 ![Gameplay Preview](assets/gameplay.gif)
 This project is the first installment of the **"20 Games Challenge"**, aimed at mastering game development fundamentals. I have rebuilt the classic Pong with modern mechanics, a smooth AI, and mobile-ready controls.
 
-## 🚀 Key Features
+## Key Features
 
 - **Dynamic Ball Physics:** The ball bounces at different angles based on where it hits the paddle (Angle Manipulation), allowing players to "aim" their shots strategically.
 - **Increasing Difficulty:** The ball's speed increases permanently with each paddle hit, creating a challenging and high-tension gameplay loop.
@@ -13,12 +13,12 @@ This project is the first installment of the **"20 Games Challenge"**, aimed at 
 - **Mobile & Touch Support:** Split-screen touch controls. The left half of the screen controls the left paddle, and the right half controls the right paddle for local 2-player matches.
 - **Polished Game Loop:** Automatic respawning after goals, with the ball serving toward the winner of the last point.
 
-## 🎮 Controls
+## Controls
 
 - **Player 1 (Left):** `W` (Up) / `S` (Down) or **Touch** (Left side of screen)
 - **Player 2 (Right/AI):** `Up Arrow` / `Down Arrow` or **Touch** (Right side of screen)
 
-## 🛠️ Technical Breakdown
+## Technical Breakdown
 
 - **Engine:** Godot 4.5
 - **Language:** GDScript
@@ -28,7 +28,7 @@ This project is the first installment of the **"20 Games Challenge"**, aimed at 
   - Signal-based architecture for UI and Audio management.
   - `_physics_process` optimization for consistent 60FPS movement.
 
-## 📱 Installation (Android)
+## Installation (Android)
 
 You can download the playable Android version of the game from the link below:
 1. Go to the [Releases](https://github.com/thelastbucuc/20-Games-Challenge-1-Pong/releases) page.
@@ -36,14 +36,14 @@ You can download the playable Android version of the game from the link below:
 3. Enable "Install from Unknown Sources" on your Android device.
 4. Install and enjoy in **Landscape** mode!
 
-## 📈 Learning Outcomes
+## Learning Outcomes
 Through this project, I have mastered:
 - [x] Clean scene hierarchy and script architecture.
 - [x] Version control (Git) workflow.
 - [x] UI/UX design (Scoreboards and Pause Menus).
 - [x] Optimization for mobile platforms.
 
-## 🎨 Assets & Credits
+## Assets & Credits
 
 This project uses a mix of custom-made assets and high-quality community resources:
 
